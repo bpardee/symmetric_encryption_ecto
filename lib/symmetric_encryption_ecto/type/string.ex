@@ -1,11 +1,11 @@
-defmodule SymmetricEncryptionEcto.Type do
+defmodule SymmetricEncryptionEcto.Type.String do
   @moduledoc """
   Perform encryption for an Ecto schema field.
 
   Example:
     schema do
       ...
-      field :password, SymmetricEncryption.EctoType, random_iv: true
+      field :password, SymmetricEncryptionEcto.Type.String, random_iv: true
       ...
     end
 
@@ -18,9 +18,12 @@ defmodule SymmetricEncryptionEcto.Type do
 
   def init(opts), do: opts
 
-  def cast(value, _opts) do
+  def cast(value, _opts) when is_binary(value) do
     {:ok, value}
   end
+
+  def cast(nil, _), do: {:ok, nil}
+  def cast(_, _), do: :error
 
   def load(nil, _loader, _opts), do: {:ok, nil}
 
