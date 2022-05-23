@@ -13,7 +13,7 @@ defmodule SymmetricEncryptionEcto.MixProject do
 
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:logger, :crypto]
     ]
   end
 
@@ -21,9 +21,8 @@ defmodule SymmetricEncryptionEcto.MixProject do
     [
       {:ecto, "~> 3.5"},
       {:jason, "~> 1.2"},
-      # TODO: Switch to official package release
       {:symmetric_encryption,
-       git: "https://github.com/bpardee/symmetric_encryption.git", branch: "config"}
+       git: "https://github.com/reidmorrison/symmetric_encryption.git"}
     ]
   end
 end
